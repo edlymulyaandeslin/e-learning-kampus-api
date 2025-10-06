@@ -18,6 +18,5 @@ Route::get('/user', function (Request $request) {
     return response()->json([
         'data' => 'piu',
         'success' => true,
-        'msg' => 'damn'
-    ]);
+    ], 200);
 });

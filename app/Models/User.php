@@ -38,4 +38,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public const ROLE_STUDENT = 'student';
+    public const ROLE_LECTURER = 'lecturer';
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class, 'lecturer_id', 'id');
+    }
 }
