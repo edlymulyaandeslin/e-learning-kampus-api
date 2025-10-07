@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\API\AuthenticateController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\CourseController;
+use App\Http\Controllers\API\AuthenticateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Authentication routes
-Route::post('register', [AuthenticateController::class, 'register'])->name('api.register');
+Route::post('register', [AuthenticateController::class, 'register'])->name('register');
 Route::post('login', [AuthenticateController::class, 'login'])->name('api.login');
-Route::post('logout', [AuthenticateController::class, 'logout'])->name('api.logout');
+Route::post('logout', [AuthenticateController::class, 'logout'])->name('logout');
+
+// Courses routes
+Route::apiResource('courses', CourseController::class);
+Route::post('courses/{id}/enroll', [CourseController::class, 'enroll'])->name('courses.enroll');

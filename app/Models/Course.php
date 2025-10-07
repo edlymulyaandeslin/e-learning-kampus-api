@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $guarded = [''];
 
     public function courseUsers()
     {

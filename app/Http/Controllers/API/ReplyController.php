@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use App\Models\Reply;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class ReplyController extends Controller
@@ -11,14 +11,6 @@ class ReplyController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
     {
         //
     }
@@ -34,15 +26,7 @@ class ReplyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Reply $reply)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Reply $reply)
+    public function show(string $id)
     {
         //
     }
@@ -50,7 +34,7 @@ class ReplyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Reply $reply)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -58,7 +42,7 @@ class ReplyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Reply $reply)
+    public function destroy(string $id)
     {
         //
     }

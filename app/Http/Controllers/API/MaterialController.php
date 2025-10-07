@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use App\Models\Material;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class MaterialController extends Controller
@@ -11,14 +11,6 @@ class MaterialController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
     {
         //
     }
@@ -34,15 +26,7 @@ class MaterialController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Material $material)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Material $material)
+    public function show(string $id)
     {
         //
     }
@@ -50,7 +34,7 @@ class MaterialController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Material $material)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -58,7 +42,7 @@ class MaterialController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Material $material)
+    public function destroy(string $id)
     {
         //
     }
