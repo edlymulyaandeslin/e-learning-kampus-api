@@ -27,6 +27,7 @@ class ReportController extends Controller
         } catch (\Exception $e) {
             return response()->json(
                 [
+                    'success' => false,
                     'message' => 'Failed to generate course report',
                     'error' => $e->getMessage()
                 ],
@@ -50,6 +51,7 @@ class ReportController extends Controller
         } catch (\Exception $e) {
             return response()->json(
                 [
+                    'success' => false,
                     'message' => 'Failed to generate course report',
                     'error' => $e->getMessage()
                 ],
@@ -79,9 +81,10 @@ class ReportController extends Controller
                 ]
 
             ], 200);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return response()->json(
                 [
+                    'success' => false,
                     'message' => 'Failed to generate student report',
                     'error' => $e->getMessage()
                 ],

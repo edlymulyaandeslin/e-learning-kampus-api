@@ -24,26 +24,42 @@ use App\Http\Controllers\API\AuthenticateController;
 // Authentication routes
 Route::post('register', [AuthenticateController::class, 'register'])->name('register');
 Route::post('login', [AuthenticateController::class, 'login'])->name('api.login');
-Route::post('logout', [AuthenticateController::class, 'logout'])->name('logout');
 
-// Courses routes
-Route::apiResource('courses', CourseController::class);
-Route::post('courses/{id}/enroll', [CourseController::class, 'enroll'])->name('courses.enroll');
+// Route Group with auth:sanctum middleware
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('logout', [AuthenticateController::class, 'logout'])->name('logout');
 
-// Material routes
-Route::post('materials', [MaterialController::class, 'upload'])->name('materials.upload');
-Route::get('materials/{id}/download', [MaterialController::class, 'download'])->name('materials.download');
+    // Material routes
+    Route::get('materials/{id}/download', [MaterialController::class, 'download'])->name('materials.download');
 
-// Assignment and submission routes
-Route::post('assignments', [AssignmentController::class, 'store'])->name('assignments.store');
-Route::post('submissions', [SubmissionController::class, 'store'])->name('submissions.store');
-Route::post('submissions/{id}/grade', [SubmissionController::class, 'grade'])->name('submissions.grade');
+    // Forum discussion routes
+    Route::post('discussions', [DiscussionController::class, 'store'])->name('discussions.store');
+    Route::post('discussions/{id}/replies', [DiscussionController::class, 'reply'])->name('discussions.reply');
 
-// Forum discussion routes
-Route::post('discussions', [DiscussionController::class, 'store'])->name('discussions.store');
-Route::post('discussions/{id}/replies', [DiscussionController::class, 'reply'])->name('discussions.reply');
+    // Report routes
+    Route::get('reports/courses', [ReportController::class, 'courses'])->name('report.courses');
+    Route::get('reports/assignments', [ReportController::class, 'assignments'])->name('report.assignments');
+    Route::get('reports/students/{id}', [ReportController::class, 'students'])->name('report.students');
+});
 
-// Report routes
-Route::get('reports/courses', [ReportController::class, 'courses'])->name('report.courses');
-Route::get('reports/assignments', [ReportController::class, 'assignments'])->name('report.assignments');
-Route::get('reports/students/{id}', [ReportController::class, 'students'])->name('report.students');
+// Route group with isLecturer middleware
+Route::middleware('isLecturer')->group(function () {
+    // Courses routes
+    Route::apiResource('courses', CourseController::class);
+
+    // Upload course materials
+    Route::post('materials', [MaterialController::class, 'upload'])->name('materials.upload');
+
+    // Assignment and grading routes
+    Route::post('assignments', [AssignmentController::class, 'store'])->name('assignments.store');
+    Route::post('submissions/{id}/grade', [SubmissionController::class, 'grade'])->name('submissions.grade');
+});
+
+// Route group with isStudent middleware
+Route::middleware('isStudent')->group(function () {
+    // Student enroll courses
+    Route::post('courses/{id}/enroll', [CourseController::class, 'enroll'])->name('courses.enroll');
+
+    // Submission routes
+    Route::post('submissions', [SubmissionController::class, 'store'])->name('submissions.store');
+});

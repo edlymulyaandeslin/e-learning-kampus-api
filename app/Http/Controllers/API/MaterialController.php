@@ -34,6 +34,7 @@ class MaterialController extends Controller
             ]);
         } catch (\Exception $e) {
             return response()->json([
+                'success' => false,
                 'message' => 'Upload failed',
                 'error' => $e->getMessage()
             ], 500);
@@ -58,6 +59,7 @@ class MaterialController extends Controller
             return response()->download($filePath);
         } catch (\Exception $e) {
             return response()->json([
+                'success' => false,
                 'message' => 'Download failed',
                 'error' => $e->getMessage()
             ], 500);

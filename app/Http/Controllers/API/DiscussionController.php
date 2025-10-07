@@ -27,6 +27,7 @@ class DiscussionController extends Controller
             ], 201);
         } catch (\Exception $e) {
             return response()->json([
+                'success' => false,
                 'error' => 'Failed to create discussion',
                 'message' => $e->getMessage()
             ], 500);
