@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\DiscussionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\CourseController;
@@ -36,3 +37,7 @@ Route::get('materials/{id}/download', [MaterialController::class, 'download'])->
 Route::post('assignments', [AssignmentController::class, 'store'])->name('assignments.store');
 Route::post('submissions', [SubmissionController::class, 'store'])->name('submissions.store');
 Route::post('submissions/{id}/grade', [SubmissionController::class, 'grade'])->name('submissions.grade');
+
+// Forum discussion routes
+Route::post('discussions', [DiscussionController::class, 'store'])->name('discussions.store');
+Route::post('discussions/{id}/replies', [DiscussionController::class, 'reply'])->name('discussions.reply');

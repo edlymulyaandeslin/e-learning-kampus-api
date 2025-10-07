@@ -9,4 +9,9 @@ class Discussion extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class, 'discussion_id', 'id');
+    }
 }
