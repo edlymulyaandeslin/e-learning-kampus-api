@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\CourseController;
+use App\Http\Controllers\API\MaterialController;
 use App\Http\Controllers\API\AuthenticateController;
 
 /*
@@ -24,3 +25,7 @@ Route::post('logout', [AuthenticateController::class, 'logout'])->name('logout')
 // Courses routes
 Route::apiResource('courses', CourseController::class);
 Route::post('courses/{id}/enroll', [CourseController::class, 'enroll'])->name('courses.enroll');
+
+// Material routes
+Route::post('materials', [MaterialController::class, 'upload'])->name('materials.upload');
+Route::get('materials/{id}/download', [MaterialController::class, 'download'])->name('materials.download');
