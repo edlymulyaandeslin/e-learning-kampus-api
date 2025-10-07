@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\CourseController;
 use App\Http\Controllers\API\MaterialController;
+use App\Http\Controllers\API\AssignmentController;
+use App\Http\Controllers\API\SubmissionController;
 use App\Http\Controllers\API\AuthenticateController;
 
 /*
@@ -29,3 +31,8 @@ Route::post('courses/{id}/enroll', [CourseController::class, 'enroll'])->name('c
 // Material routes
 Route::post('materials', [MaterialController::class, 'upload'])->name('materials.upload');
 Route::get('materials/{id}/download', [MaterialController::class, 'download'])->name('materials.download');
+
+// Assignment and submission routes
+Route::post('assignments', [AssignmentController::class, 'store'])->name('assignments.store');
+Route::post('submissions', [SubmissionController::class, 'store'])->name('submissions.store');
+Route::post('submissions/{id}/grade', [SubmissionController::class, 'grade'])->name('submissions.grade');

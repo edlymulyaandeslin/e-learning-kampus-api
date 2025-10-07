@@ -3,47 +3,35 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Assignment;
 use Illuminate\Http\Request;
 
 class AssignmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
-    }
+        try {
+            $validateData = $request->validate([
+                'course_id' => 'required|exists:courses,id',
+                'title' => 'required|string|max:255',
+                'description' => 'required|string',
+                'deadline' => 'required|date',
+            ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+            Assignment::create($validateData);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+            return response()->json([
+                'success' => true,
+                'message' => 'Assignment stored successfully',
+                'data' => $validateData
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed stored assignment',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 }
