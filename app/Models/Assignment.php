@@ -9,4 +9,9 @@ class Assignment extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function submissions()
+    {
+        return $this->hasMany(Submission::class, 'assignment_id', 'id');
+    }
 }
