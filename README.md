@@ -30,8 +30,8 @@ POST /api/register
 }
 RESPONSE
 {
-    "success" => true,
-    "message" => "User registered successfully"
+    "success" : true,
+    "message" : "User registered successfully"
 }
 ```
 
@@ -86,9 +86,9 @@ Accept: application/json
 
 POST /api/courses
 {
-    "lecturer_id" => "required",
-    "name" => "required",
-    "description" => "required",
+    "lecturer_id" : "required",
+    "name" : "required",
+    "description" : "required",
 }
 RESPONSE
 {
@@ -104,9 +104,9 @@ Accept: application/json
 
 PUT /api/courses/{id}
 {
-    "lecturer_id" => "required",
-    "name" => "string",
-    "description" => "string",
+    "lecturer_id" : "required",
+    "name" : "string",
+    "description" : "string",
 }
 RESPONSE
 {
@@ -134,9 +134,9 @@ Accept: application/json
 
 POST /api/materials
 {
-    "course_id" => "required",
-    "title" => "required",
-    "file_path" => "required|file|mimes:pdf,doc,docx,ppt,pptx,zip",
+    "course_id" : "required",
+    "title" : "required",
+    "file_path" : "required|file|mimes:pdf,doc,docx,ppt,pptx,zip",
 }
 RESPONSE
 {
@@ -152,10 +152,10 @@ Accept: application/json
 
 POST /api/assignments
 {
-    "course_id" => "required",
-    "title" => "required",
-    "description" => "required",
-    "deadline" => "required|date",
+    "course_id" : "required",
+    "title" : "required",
+    "description" : "required",
+    "deadline" : "required|date",
 }
 RESPONSE
 {
@@ -171,7 +171,7 @@ Accept: application/json
 
 POST /api/submissions/{id}/grade
 {
-    "score" => "required",
+    "score" : "required",
 }
 RESPONSE
 {
@@ -215,9 +215,9 @@ Accept: application/json
 
 POST /api/submissions
 {
-    "assignment_id" => "required",
-    "student_id" => "required",
-    "file_path" => "required|file|mimes:pdf,doc,docx,zip|max:2048",
+    "assignment_id" : "required",
+    "student_id" : "required",
+    "file_path" : "required|file|mimes:pdf,doc,docx,zip|max:2048",
 }
 RESPONSE
 {
@@ -235,9 +235,9 @@ Accept: application/json
 
 POST /api/discussions
 {
-    "course_id" => "required",
-    "user_id" => "required",
-    "content" => "required",
+    "course_id" : "required",
+    "user_id" : "required",
+    "content" : "required",
 }
 RESPONSE
 {
@@ -253,9 +253,9 @@ Accept: application/json
 
 POST /api/discussions/{id}/replies
 {
-    "discussion_id" => "required",
-    "user_id" => "required",
-    "content" => "required",
+    "discussion_id" : "required",
+    "user_id" : "required",
+    "content" : "required",
 }
 RESPONSE
 {
