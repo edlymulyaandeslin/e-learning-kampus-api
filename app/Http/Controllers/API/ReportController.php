@@ -67,8 +67,7 @@ class ReportController extends Controller
 
             $totalCoursesEnrolled = CourseUser::where('student_id', $id)->count();
             $totalSubmissions = Submission::where('student_id', $id)->count();
-            $avgScore = Submission::where('student_id', $id)->sum('score');
-            $totalSubmissionsWithScore = Submission::where('student_id', $id)->whereNotNull('score')->count();
+            $avgScore = Submission::where('student_id', $id)->avg('score');
 
             return response()->json([
                 'success' => true,
@@ -77,7 +76,8 @@ class ReportController extends Controller
                     'student' => $student,
                     'total_courses_enrolled' => $totalCoursesEnrolled,
                     'total_submissions' => $totalSubmissions,
-                    'average_score' => round($avgScore / $totalSubmissionsWithScore, 2),
+                    'average_score' => round($avgScore, 2),
+
                 ]
 
             ], 200);
